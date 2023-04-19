@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NikerunslistComponent } from './nike-runs-list/nikerunslist.component';
 import { RouterModule } from '@angular/router';
 import {DataTablesModule} from "angular-datatables";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [NikerunslistComponent, ConvertToSpacesPipe],
@@ -12,7 +13,8 @@ import {DataTablesModule} from "angular-datatables";
     RouterModule.forChild([
       {path: 'products', component: NikerunslistComponent},
     ]),
-    SharedModule
+    SharedModule,
+    MatTableModule
   ],
 })
 export default class NikeRunsModule {}
