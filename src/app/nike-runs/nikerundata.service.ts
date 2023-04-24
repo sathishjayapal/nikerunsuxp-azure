@@ -1,17 +1,20 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, catchError, tap, throwError, map } from 'rxjs';
-import { NikeData } from './nike-data';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {catchError, Observable, tap, throwError} from 'rxjs';
+import {NikeData} from './nike-data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NikerundataService {
-  private productUrl = 'http://localhost:8080/api/nike';
-  constructor(private http: HttpClient) {}
+  private productUrl = 'http://localhost:8080/api/nike/';
 
-  getProducts(): Observable<NikeData> {
-    return this.http.get<NikeData>(this.productUrl).pipe(
+  constructor(private http: HttpClient) {
+  }
+
+  getProducts(pageNumber: number, pageSize: number): Observable<NikeData> {
+    let finalUrl = this.productUrl + pageNumber + '/' + pageSize;
+    return this.http.get<NikeData>(finalUrl).pipe(
       tap((data) => console.log('All: ', JSON.stringify(data))),
       catchError(this.handleError)
     );

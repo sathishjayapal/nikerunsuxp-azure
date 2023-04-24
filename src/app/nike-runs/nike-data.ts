@@ -1,7 +1,13 @@
 export interface NikeData {
   data: RunInfo[];
+  totalElements: number;
+  totalPages: number,
+  currentPage: number,
+  hasNext: boolean,
+  hasPrevious: boolean,
 
 }
+
 export interface RunInfo {
   id: number;
   name: string;
